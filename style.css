@@ -1,0 +1,691 @@
+/* ================= 1. RESET & THEME VARIABLES ================= */
+:root {
+  --bg-primary: #0b0e14;
+  --bg-secondary: #121722;
+  --bg-card: #151b28;
+  --accent-red: #ff2a3d;
+  --accent-red-hover: #e01e30;
+  --text-primary: #ffffff;
+  --text-secondary: #9aa4b8;
+  --border-color: #252e42;
+  --font-display: "Chakra Petch", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ================= 2. STICKY NAVBAR ================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background: rgba(11, 14, 20, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: var(--accent-red);
+}
+
+.logo small {
+  font-size: 0.72rem;
+  font-style: normal;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  margin-left: 4px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-red);
+}
+
+/* ================= 3. HERO & REVOLVING CAR PARTS ================= */
+.hero {
+  position: relative;
+  min-height: 76vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4.5rem 5%;
+  background: radial-gradient(circle at center, #181f30 0%, var(--bg-primary) 78%);
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.hero-mech-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mech-part {
+  position: absolute;
+  color: rgba(255, 42, 61, 0.14);
+  filter: drop-shadow(0 0 12px rgba(255, 42, 61, 0.08));
+}
+
+.gear-lg {
+  width: 230px;
+  height: 230px;
+  top: -35px;
+  left: 3%;
+}
+
+.gear-sm {
+  width: 135px;
+  height: 135px;
+  top: 135px;
+  left: 14.5%;
+  color: rgba(255, 255, 255, 0.09);
+}
+
+.turbo-unit {
+  width: 210px;
+  height: 180px;
+  top: 15px;
+  right: 5%;
+}
+
+.turbo-blades {
+  transform-origin: 70px 60px;
+  animation: spinCW 2.4s linear infinite;
+}
+
+.brake-rotor {
+  width: 190px;
+  height: 190px;
+  bottom: -25px;
+  left: 10%;
+  color: rgba(255, 255, 255, 0.09);
+}
+
+.exhaust-unit {
+  width: 240px;
+  height: 120px;
+  bottom: 20px;
+  right: 6%;
+  animation: exhaustVibrate 1.8s ease-in-out infinite alternate;
+}
+
+.center-flywheel {
+  width: 440px;
+  height: 440px;
+  top: 50%;
+  left: 50%;
+  margin-top: -220px;
+  margin-left: -220px;
+  color: rgba(255, 255, 255, 0.055);
+}
+
+.spin-cw {
+  animation: spinCW 16s linear infinite;
+}
+
+.spin-ccw {
+  animation: spinCCW 10s linear infinite;
+}
+
+.spin-cw-slow {
+  animation: spinCW 22s linear infinite;
+}
+
+.spin-ccw-slow {
+  animation: spinCCW 34s linear infinite;
+}
+
+@keyframes spinCW {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes spinCCW {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+
+@keyframes exhaustVibrate {
+  0%   { transform: translateY(0px) rotate(-4deg); }
+  100% { transform: translateY(-6px) rotate(-1deg); }
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--accent-red);
+  background: rgba(255, 42, 61, 0.12);
+  border: 1px solid rgba(255, 42, 61, 0.4);
+  border-radius: 4px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.4rem);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.hero h1 span {
+  color: var(--accent-red);
+}
+
+.hero p {
+  font-size: 1.08rem;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto 2rem auto;
+}
+
+/* ================= 4. BUTTONS ================= */
+.btn-primary {
+  display: inline-block;
+  padding: 0.95rem 2.1rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background: var(--accent-red);
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transform: skewX(-10deg);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--accent-red-hover);
+  box-shadow: 0 6px 22px rgba(255, 42, 61, 0.4);
+  transform: skewX(-10deg) translateY(-2px);
+}
+
+.btn-secondary {
+  width: 100%;
+  margin-top: auto;
+  padding: 0.65rem 1rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #0b0e14;
+  background: #e6ebf5;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--accent-red);
+  color: #ffffff;
+}
+
+/* ================= 5. SECTIONS & DIRECT SEARCH BAR ================= */
+.section {
+  padding: 4.5rem 5%;
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+.advisor-section {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.section-header h2 span {
+  color: var(--accent-red);
+}
+
+.section-header p {
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.direct-search-wrapper {
+  max-width: 820px;
+  margin: 0 auto 1.75rem auto;
+}
+
+.search-input-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.25rem 0.9rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.search-input-box:focus-within {
+  border-color: var(--accent-red);
+  box-shadow: 0 0 0 3px rgba(255, 42, 61, 0.2);
+}
+
+.search-icon {
+  font-size: 1.1rem;
+  color: var(--accent-red);
+  margin-right: 0.65rem;
+  user-select: none;
+}
+
+#car-search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.7rem 0.4rem;
+}
+
+#car-search-input::placeholder {
+  color: #8b95a5;
+}
+
+#car-search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.clear-search-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.clear-search-btn:hover {
+  background: var(--accent-red);
+}
+
+.clear-search-btn.hidden {
+  display: none;
+}
+
+/* ================= 6. SMART ADVISOR FORM ================= */
+.advisor-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  align-items: end;
+  background: var(--bg-secondary);
+  padding: 1.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--accent-red);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.85rem 1.4rem;
+}
+
+/* ================= 7. RESULTS & CAR CARDS WITH PHOTO BACKGROUNDS ================= */
+.results-container {
+  margin-top: 2.5rem;
+}
+
+.results-heading {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+}
+
+.no-results {
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--bg-secondary);
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  color: var(--text-secondary);
+}
+
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+  gap: 1.5rem;
+}
+
+.car-card {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.4rem;
+  min-height: 265px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.car-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-red);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+.car-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.35s ease;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.car-card:hover .car-bg-img {
+  transform: scale(1.06);
+  opacity: 0.52 !important;
+}
+
+.car-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 14, 20, 0.45) 0%, rgba(11, 14, 20, 0.92) 85%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.car-card-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.car-brand {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-red);
+}
+
+.car-price {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e6ebf5;
+}
+
+.car-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+  color: var(--text-primary);
+}
+
+.car-highlight {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.car-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.84rem;
+  color: #e2e8f0;
+  margin-bottom: 1.2rem;
+}
+
+.car-specs strong {
+  color: #ffffff;
+}
+
+/* ================= 8. SPEC MODAL ================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(5, 8, 13, 0.82);
+  backdrop-filter: blur(6px);
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent-red);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: var(--accent-red);
+}
+
+#modal-body h2 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  margin-bottom: 0.4rem;
+}
+
+.modal-price {
+  color: var(--accent-red);
+  font-size: 1.05rem;
+  margin-bottom: 0.9rem;
+}
+
+.modal-spec-list {
+  list-style: none;
+  margin-top: 1.2rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-size: 0.94rem;
+}
+
+.modal-spec-list li strong {
+  color: var(--text-secondary);
+  display: inline-block;
+  min-width: 155px;
+}
+
+/* ================= 9. FOOTER & RESPONSIVE ================= */
+.footer {
+  text-align: center;
+  padding: 2rem 5%;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .gear-lg,
+  .turbo-unit,
+  .brake-rotor,
+  .exhaust-unit {
+    transform: scale(0.7);
+  }
+}
+.car-card {
+  border: 2px solid #ffd60a;
+}
+
+.car-card:hover {
+  border-color: #ffe64d;
+  box-shadow: 0 8px 24px rgba(255, 214, 10, 0.3);
+}
